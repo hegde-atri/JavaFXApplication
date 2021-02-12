@@ -2,16 +2,14 @@ package com.company;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
 
 
     public static void main(String[] args) {
@@ -20,6 +18,85 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) {
+        window.setTitle("Title");
+
+        CheckBox box1 = new CheckBox("Honey");
+        CheckBox box2 = new CheckBox("Sugar");
+
+        Button button= new Button("Order Now");
+        button.setOnAction(e -> handleOptions(box1, box2));
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.getChildren().addAll(box1, box2, button);
+
+        Scene scene = new Scene(layout, 300, 200);
+        window.setScene(scene);
+        window.show();
+    }
+
+    private void handleOptions(CheckBox box1, CheckBox box2){
+        String message = "User's order\n";
+        if(box1.isSelected()){
+            message += "yes honey\n";
+        }
+        if(box2.isSelected()){
+            message += "yes sugar\n";
+        }
+        System.out.println(message);
+    }
+
+}
+/*
+    public void start(Stage primaryStage) {
+        window = primaryStage;
+        window.setTitle("Hello");
+        button = new Button("Click Me");
+        window.setOnCloseRequest(e -> {
+            e.consume();
+            closeProgram();
+        });
+        button.setOnAction(e -> {
+            boolean result = ConfirmBox.display("window title", "Are you sure you want to do this?");
+            System.out.println(result);
+        });
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(button);
+        Scene scene = new Scene(layout, 300, 250);
+        window.setScene(scene);
+        window.show();
+    }
+
+    private void closeProgram(){
+        Boolean answer = ConfirmBox.display("Exit", "Are you sure?");
+        if(answer){
+            window.close();
+        }
+`````````````````````````````````````````````````````````````````````````````````````````````
+        window.setTitle("Title");
+
+        HBox topMenu = new HBox();
+        Button buttonA = new Button("File");
+        Button buttonB = new Button("Edit");
+        Button buttonC = new Button("View");
+        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
+
+        VBox leftMenu = new VBox();
+        Button buttonD = new Button("D");
+        Button buttonE = new Button("E");
+        Button buttonF = new Button("F");
+        leftMenu.getChildren().addAll(buttonD, buttonE, buttonF);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+
+        Scene scene = new Scene(borderPane, 300, 250);
+        window.setScene(scene);
+        window.show();
+`````````````````````````````````````````````````````````````````````````````````````````````
+   public void start(Stage window) {
         window.setTitle("Title");
 
         GridPane grid = new GridPane();
@@ -61,56 +138,6 @@ public class Main extends Application {
             return false;
         }
     }
-
-}
-/*
-    public void start(Stage primaryStage) {
-        window = primaryStage;
-        window.setTitle("Hello");
-        button = new Button("Click Me");
-        window.setOnCloseRequest(e -> {
-            e.consume();
-            closeProgram();
-        });
-        button.setOnAction(e -> {
-            boolean result = ConfirmBox.display("window title", "Are you sure you want to do this?");
-            System.out.println(result);
-        });
-
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-        Scene scene = new Scene(layout, 300, 250);
-        window.setScene(scene);
-        window.show();
-    }
-
-    private void closeProgram(){
-        Boolean answer = ConfirmBox.display("Exit", "Are you sure?");
-        if(answer){
-            window.close();
-        }
-
-        window.setTitle("Title");
-
-        HBox topMenu = new HBox();
-        Button buttonA = new Button("File");
-        Button buttonB = new Button("Edit");
-        Button buttonC = new Button("View");
-        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
-
-        VBox leftMenu = new VBox();
-        Button buttonD = new Button("D");
-        Button buttonE = new Button("E");
-        Button buttonF = new Button("F");
-        leftMenu.getChildren().addAll(buttonD, buttonE, buttonF);
-
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(topMenu);
-        borderPane.setLeft(leftMenu);
-
-        Scene scene = new Scene(borderPane, 300, 250);
-        window.setScene(scene);
-        window.show();
 
  */
 
