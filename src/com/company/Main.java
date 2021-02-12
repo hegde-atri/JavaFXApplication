@@ -20,6 +20,10 @@ public class Main extends Application {
         window = primaryStage;
         window.setTitle("Hello");
         button = new Button("Click Me");
+        window.setOnCloseRequest(e -> {
+            e.consume();
+            closeProgram();
+        });
         button.setOnAction(e -> {
             boolean result = ConfirmBox.display("window title", "Are you sure you want to do this?");
             System.out.println(result);
@@ -30,6 +34,13 @@ public class Main extends Application {
         Scene scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
+    }
+
+    private void closeProgram(){
+        Boolean answer = ConfirmBox.display("Exit", "Are you sure?");
+        if(answer){
+            window.close();
+        }
     }
 }
 
