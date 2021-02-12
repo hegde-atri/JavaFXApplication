@@ -1,12 +1,14 @@
 package com.company;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -20,25 +22,44 @@ public class Main extends Application {
     public void start(Stage window) {
         window.setTitle("Title");
 
-        HBox topMenu = new HBox();
-        Button buttonA = new Button("File");
-        Button buttonB = new Button("Edit");
-        Button buttonC = new Button("View");
-        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        grid.setVgap(8);
+        grid.setHgap(10);
 
-        VBox leftMenu = new VBox();
-        Button buttonD = new Button("D");
-        Button buttonE = new Button("E");
-        Button buttonF = new Button("F");
-        leftMenu.getChildren().addAll(buttonD, buttonE, buttonF);
+        Label name = new Label("Username: ");
+        GridPane.setConstraints(name, 0, 0);
+        TextField nameInput = new TextField();
+        nameInput.setPromptText("username");
+        GridPane.setConstraints(nameInput, 1, 0);
 
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(topMenu);
-        borderPane.setLeft(leftMenu);
+        Label pass = new Label("Password: ");
+        GridPane.setConstraints(pass, 0, 1);
+        PasswordField passInput = new PasswordField();
+        passInput.setPromptText("password");
+        GridPane.setConstraints(passInput, 1, 1);
 
-        Scene scene = new Scene(borderPane, 300, 250);
+        Button logIn = new Button("Log in");
+        GridPane.setConstraints(logIn, 1, 2);
+        logIn.setOnAction(e -> isInt(nameInput, nameInput.getText()));
+
+        grid.getChildren().addAll(name, nameInput, pass, passInput, logIn);
+
+
+        Scene scene = new Scene(grid, 300, 200);
         window.setScene(scene);
         window.show();
+    }
+
+    private boolean isInt(TextField input, String message){
+        try{
+            int age= Integer.parseInt(input.getText());
+            System.out.println("User is: " + age);
+            return true;
+        }catch(NumberFormatException e){
+            System.out.println("Error: " + message + " is not a number!");
+            return false;
+        }
     }
 
 }
@@ -68,6 +89,28 @@ public class Main extends Application {
         if(answer){
             window.close();
         }
+
+        window.setTitle("Title");
+
+        HBox topMenu = new HBox();
+        Button buttonA = new Button("File");
+        Button buttonB = new Button("Edit");
+        Button buttonC = new Button("View");
+        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
+
+        VBox leftMenu = new VBox();
+        Button buttonD = new Button("D");
+        Button buttonE = new Button("E");
+        Button buttonF = new Button("F");
+        leftMenu.getChildren().addAll(buttonD, buttonE, buttonF);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+
+        Scene scene = new Scene(borderPane, 300, 250);
+        window.setScene(scene);
+        window.show();
 
  */
 
