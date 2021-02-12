@@ -18,36 +18,34 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) {
-        window.setTitle("Title");
+        window.setTitle("ChoiceBox");
 
-        CheckBox box1 = new CheckBox("Honey");
-        CheckBox box2 = new CheckBox("Sugar");
+        String[] fruits = {"Orange", "Tangerine"};
 
-        Button button= new Button("Order Now");
-        button.setOnAction(e -> handleOptions(box1, box2));
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        choiceBox.getItems().add("<No item selected>");
+        choiceBox.getItems().addAll("Apple", "Bananas");
+        choiceBox.getItems().addAll(fruits);
+        choiceBox.setValue("<No item selected>");
+
+        //LISTEN FOR SELECTION CHANGES
+        choiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> System.out.println("selected value: " + newValue));
+
+        Button button= new Button("Click");
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20, 20, 20, 20));
-        layout.getChildren().addAll(box1, box2, button);
+        layout.getChildren().addAll(choiceBox, button);
 
-        Scene scene = new Scene(layout, 300, 200);
+        Scene scene = new Scene(layout, 300, 250);
         window.setScene(scene);
         window.show();
     }
 
-    private void handleOptions(CheckBox box1, CheckBox box2){
-        String message = "User's order\n";
-        if(box1.isSelected()){
-            message += "yes honey\n";
-        }
-        if(box2.isSelected()){
-            message += "yes sugar\n";
-        }
-        System.out.println(message);
-    }
 
 }
 /*
+HOW TO CLOSE THE WINDOW
     public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Hello");
@@ -74,6 +72,7 @@ public class Main extends Application {
             window.close();
         }
 `````````````````````````````````````````````````````````````````````````````````````````````
+EMBEDDED LAYOUTS
         window.setTitle("Title");
 
         HBox topMenu = new HBox();
@@ -96,6 +95,7 @@ public class Main extends Application {
         window.setScene(scene);
         window.show();
 `````````````````````````````````````````````````````````````````````````````````````````````
+ADD USER INPUT FIELDS + GRID LAYOUT
    public void start(Stage window) {
         window.setTitle("Title");
 
@@ -126,8 +126,39 @@ public class Main extends Application {
         Scene scene = new Scene(grid, 300, 200);
         window.setScene(scene);
         window.show();
+`````````````````````````````````````````````````````````````````````````````````````````
+ADD CHECKBOXES
+
+public void start(Stage window) {
+        window.setTitle("Title");
+
+        CheckBox box1 = new CheckBox("Honey");
+        CheckBox box2 = new CheckBox("Sugar");
+
+        Button button= new Button("Order Now");
+        button.setOnAction(e -> handleOptions(box1, box2));
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.getChildren().addAll(box1, box2, button);
+
+        Scene scene = new Scene(layout, 300, 200);
+        window.setScene(scene);
+        window.show();
     }
 
+    private void handleOptions(CheckBox box1, CheckBox box2){
+        String message = "User's order\n";
+        if(box1.isSelected()){
+            message += "yes honey\n";
+        }
+        if(box2.isSelected()){
+            message += "yes sugar\n";
+        }
+        System.out.println(message);
+    }
+```````````````````````````````````````````````````````````````````````````````````````
+GET INPUT FROM FIELDS
     private boolean isInt(TextField input, String message){
         try{
             int age= Integer.parseInt(input.getText());
@@ -137,7 +168,34 @@ public class Main extends Application {
             System.out.println("Error: " + message + " is not a number!");
             return false;
         }
+```````````````````````````````````````````````````````````````````````````````````````
+CHOICE BOXES (DROP DOWN MENU) AND LISTEN FOR CHANGES
+    public void start(Stage window) {
+        window.setTitle("ChoiceBox");
+
+        String[] fruits = {"Orange", "Tangerine"};
+
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        choiceBox.getItems().add("<No item selected>");
+        choiceBox.getItems().addAll("Apple", "Bananas");
+        choiceBox.getItems().addAll(fruits);
+        choiceBox.setValue("<No item selected>");
+
+        //LISTEN FOR SELECTION CHANGES
+        choiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> System.out.println("selected value: " + newValue));
+
+        Button button= new Button("Click");
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.getChildren().addAll(choiceBox, button);
+
+        Scene scene = new Scene(layout, 300, 250);
+        window.setScene(scene);
+        window.show();
     }
+`````````````````````````````````````````````````````````````````````````````````````````````````
+
 
  */
 
