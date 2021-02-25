@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="H2 - myDatabase" uuid="c0e49bc2-928f-4c8b-9217-21e48231efd8">
-      <driver-ref>h2.unified</driver-ref>
+    <data-source source="LOCAL" name="BankingSystem@HEGDEATRI" uuid="97631f17-5d02-4c10-b4cd-abfde32dc0f5">
+      <driver-ref>sqlserver.jtds</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:mem:myDatabase</jdbc-url>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://HEGDEATRI:1433/BankingSystem;instance=SQLEXPRESS</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

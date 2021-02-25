@@ -7,35 +7,36 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Main extends Application {
 
-
+    ComboBox<String> comboBox;
+    Button button;
+    Scene scene;
+    ListView<String> listView;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage window) {
-        window.setTitle("ChoiceBox");
-
-        String[] fruits = {"Orange", "Tangerine"};
-
-        ChoiceBox<String> choiceBox = new ChoiceBox<>();
-        choiceBox.getItems().add("<No item selected>");
-        choiceBox.getItems().addAll("Apple", "Bananas");
-        choiceBox.getItems().addAll(fruits);
-        choiceBox.setValue("<No item selected>");
-
-        //LISTEN FOR SELECTION CHANGES
-        choiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> System.out.println("selected value: " + newValue));
+    public void start(Stage window) throws Exception{
+        window.setTitle("ListView");
 
         Button button= new Button("Click");
+        button.setOnAction(e -> System.out.println("Clicked!"));
+
+        listView = new ListView<>();
+        listView.getItems().addAll("Iron Man", "your name", "i want to eat your pancreas", "weathering with you");
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20, 20, 20, 20));
-        layout.getChildren().addAll(choiceBox, button);
+        layout.getChildren().addAll(listView, button);
 
         Scene scene = new Scene(layout, 300, 250);
         window.setScene(scene);
@@ -195,7 +196,31 @@ CHOICE BOXES (DROP DOWN MENU) AND LISTEN FOR CHANGES
         window.show();
     }
 `````````````````````````````````````````````````````````````````````````````````````````````````
+COMBO BOXES
+    public void start(Stage window) throws Exception{
+        window.setTitle("ComboBox");
 
+        comboBox = new ComboBox<>();
+        comboBox.getItems().addAll("Hello", "Hey", "Hi", "Good morning");
+        comboBox.setPromptText("select greeting");
+
+        Button button= new Button("Click");
+        //CONFIRMATION BUTTON
+        button.setOnAction(e -> System.out.println(comboBox.getValue()));
+
+        //CHOOSING WITHOUT CONFIRMATION
+        comboBox.setOnAction(e -> System.out.println("user selected: " + comboBox.getValue()));
+
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.getChildren().addAll(comboBox, button);
+
+        Scene scene = new Scene(layout, 300, 250);
+        window.setScene(scene);
+        window.show();
+    }
+`````````````````````````````````````````````````````````````````````````````````````````````````
 
  */
 
